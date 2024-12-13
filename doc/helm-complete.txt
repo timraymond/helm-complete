@@ -1,0 +1,72 @@
+*helm-complete.txt*	For Vim version 8.0 and above	Last change: 2024 April 13
+
+                                                        *helm-complete*
+Helm completion provides auto-completion for values.yaml entries in Helm templates.
+
+==============================================================================
+1. Introduction                                         *helm-complete-intro*
+
+helm-complete is a Vim plugin that provides intelligent autocompletion for Helm
+chart values in template files. It automatically detects Helm template files and
+provides completion suggestions for values defined in your values.yaml file.
+
+==============================================================================
+2. Usage                                               *helm-complete-usage*
+
+When editing a Helm template file, you can trigger completion with:
+>
+    <C-x><C-o>
+<
+For example, if your values.yaml contains:
+>
+    resources:
+      limits:
+        memory: "300Mi"
+        cpu: "500m"
+<
+Typing `.Values.` and triggering completion will show all possible paths.
+
+The plugin automatically detects Helm files by:
+- Files in templates/ directory
+- Files with .yaml.gotmpl extension
+- YAML files containing Helm template syntax
+
+==============================================================================
+3. Configuration                                       *helm-complete-config*
+
+                                                *g:helm_complete_auto_detect*
+Enable or disable automatic detection of Helm files. Default: 1 (enabled)
+>
+    let g:helm_complete_auto_detect = 1
+<
+                                                *g:helm_complete_trigger*
+Change the completion trigger key mapping. Default: '<C-x><C-o>'
+>
+    let g:helm_complete_trigger = '<C-x><C-o>'
+<
+                                                *g:helm_complete_preview*
+Enable preview window during completion. Default: 0 (disabled)
+>
+    let g:helm_complete_preview = 1
+<
+
+==============================================================================
+4. Commands                                            *helm-complete-commands*
+
+:HelmToggle                                            *:HelmToggle*
+    Toggle Helm mode for the current buffer. This is useful when automatic
+    detection doesn't work as expected.
+
+==============================================================================
+5. Functions                                           *helm-complete-functions*
+
+helm_complete#yaml#clear_cache()                       *helm_complete#yaml#clear_cache()*
+    Clear the cache of parsed YAML files. Useful if you've modified your
+    values.yaml file and want to force a refresh.
+
+==============================================================================
+6. Development                                         *helm-complete-development*
+
+Report bugs and contribute at: https://github.com/timraymond/helm-complete.vim
+
+ vim:tw=78:ts=8:noet:ft=help:norl:
